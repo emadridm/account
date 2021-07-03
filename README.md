@@ -15,11 +15,11 @@ An account manager for Mate.
 # Usage
 <!-- usage -->
 ```sh-session
-$ npm install -g account
+$ npm install -g @mate/account
 $ account COMMAND
 running command...
 $ account (-v|--version|version)
-account/1.0.0 linux-x64 node-v16.1.0
+@mate/account/1.0.0 linux-x64 node-v16.1.0
 $ account --help [COMMAND]
 USAGE
   $ account COMMAND
@@ -28,8 +28,25 @@ USAGE
 <!-- usagestop -->
 # Commands
 <!-- commands -->
+* [`account create [FILE]`](#account-create-file)
 * [`account hello [FILE]`](#account-hello-file)
 * [`account help [COMMAND]`](#account-help-command)
+
+## `account create [FILE]`
+
+describe the command here
+
+```
+USAGE
+  $ account create [FILE]
+
+OPTIONS
+  -f, --force
+  -h, --help       show CLI help
+  -n, --name=name  name to print
+```
+
+_See code: [src/commands/create.ts](https://github.com/emadridm/account/blob/v1.0.0/src/commands/create.ts)_
 
 ## `account hello [FILE]`
 
