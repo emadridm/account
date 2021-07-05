@@ -24,9 +24,7 @@ export default class Create extends Command {
     const { args, flags } = this.parse(Create)
     if (args.name) {
       const app = await InitApp<Accounts.AccountApp>(Accounts.AccountApp);
-      console.log(`app.pathResolve('accounts') = ${app.pathResolve('accounts')}`);
       let account = new Accounts.ExchangeAccount(args.name);
-      account.address = 'enrique.madrid@italtel.com';
       account = await app.addAccount(account);
       console.log(`"${account.name}"@${account.provider} created!`);
       app.close();
