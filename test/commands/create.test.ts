@@ -1,19 +1,27 @@
-import { expect, test } from '@oclif/test';
+import Create from '../../src/commands/create';
+import { stdout } from 'stdout-stderr';
 
 describe('create', () => {
 
-  test
-    .stdout()
-    .command(['create', 'Office Mate'])
-    .it('should create a Mate Cloud account named "Office Mate"', ctx => {
-      expect(ctx.stdout).to.contain('"Office Mate"@Mate created!!')
-    })
+  beforeAll(() => {
+    stdout.start();
+  })
 
-  test
-    .stdout()
-    .command(['create', '--provider', 'Exchange', 'Office Mail'])
-    .it('should create a Microsoft Exchange named "Office Mail"', ctx => {
-      expect(ctx.stdout).to.contain('"Office Mail"@Exchange created!')
+  afterAll(() => {
+    stdout.stop()
+  })
+
+  // test
+  //   .stdout()
+  //   .command(['create', 'Office Mate'])
+  //   .it('should create a Mate Cloud account named "Office Mate"', ctx => {
+  //     expect(ctx.stdout).to.contain('"Office Mate"@Mate created!!')
+  //   })
+
+  it('should create a Microsoft Exchange named "Office Mail"', async () => {
+    return Create.run(['--provider', 'Exchange', 'Office Mail']).then(() => {
+      expect(stdout.output).toContain('"Office Mail"@Exchange created!');
     })
+  })
 
 })

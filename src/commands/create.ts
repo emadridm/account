@@ -15,7 +15,7 @@ export default class Create extends Command {
       default: 'Mate'
     }),
     // flag with no value (-f, --force)
-    force: flags.boolean({ char: 'f' }),
+    force: flags.boolean({ char: 'f' })
   }
 
   static args = [{ name: 'name' }]
@@ -24,11 +24,9 @@ export default class Create extends Command {
     const { args, flags } = this.parse(Create)
     if (args.name) {
       const app = await InitApp<Accounts.AccountApp>(Accounts.AccountApp);
-      let account = new Accounts.ExchangeAccount(args.name);
-      account = await app.addAccount(account);
+      let account = await app.createAccount(flags.provider, args.name);
       console.log(`"${account.name}"@${account.provider} created!`);
       app.close();
-      this.exit(0);
     }
   }
 }
