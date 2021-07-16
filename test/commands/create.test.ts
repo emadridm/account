@@ -11,14 +11,13 @@ describe('create', () => {
     stdout.stop()
   })
 
-  // test
-  //   .stdout()
-  //   .command(['create', 'Office Mate'])
-  //   .it('should create a Mate Cloud account named "Office Mate"', ctx => {
-  //     expect(ctx.stdout).to.contain('"Office Mate"@Mate created!!')
+  // it('should create a Mate Cloud account named "Office Mate"', async () => {
+  //   return Create.run(['Office Mail']).then(() => {
+  //     expect(stdout.output).toContain('"Office Mate"@Mate created!!');
   //   })
+  // })
 
-  it('should create a Microsoft Exchange named "Office Mail"', async () => {
+  it('should create a Microsoft Exchange account named "Office Mail"', async () => {
     return Create.run(['--provider', 'Exchange', 'Office Mail']).then(() => {
       expect(stdout.output).toContain('"Office Mail"@Exchange created!');
     })

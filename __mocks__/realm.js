@@ -104,7 +104,7 @@ class Realm {
 
   delete(object) {
     if (this.lastLookedUpModel || object.model) {
-      const model = object.model ? object.model : this.lastLookedUpModel
+      const model = object.model ? object.model : this.lastLookedUpModel;
       if (Array.isArray(object)) {
         object.forEach((item) => {
           delete this.data[model][item.id];
@@ -157,7 +157,7 @@ Realm.open = (params) => {
   return new Promise((resolve) => {
     resolve(new Realm(params));
   });
-}
+};
 
 Realm.BSON = bson;
 

@@ -28,22 +28,23 @@ USAGE
 <!-- usagestop -->
 # Commands
 <!-- commands -->
-* [`account create [FILE]`](#account-create-file)
+* [`account create [NAME]`](#account-create-name)
 * [`account hello [FILE]`](#account-hello-file)
 * [`account help [COMMAND]`](#account-help-command)
+* [`account list [FILE]`](#account-list-file)
 
-## `account create [FILE]`
+## `account create [NAME]`
 
-describe the command here
+create an account
 
 ```
 USAGE
-  $ account create [FILE]
+  $ account create [NAME]
 
 OPTIONS
   -f, --force
-  -h, --help       show CLI help
-  -n, --name=name  name to print
+  -h, --help                    show CLI help
+  -p, --provider=Mate|Exchange  [default: Mate] App provider
 ```
 
 _See code: [src/commands/create.ts](https://github.com/emadridm/account/blob/v1.0.0/src/commands/create.ts)_
@@ -84,4 +85,20 @@ OPTIONS
 ```
 
 _See code: [@oclif/plugin-help](https://github.com/oclif/plugin-help/blob/v3.2.2/src/commands/help.ts)_
+
+## `account list [FILE]`
+
+describe the command here
+
+```
+USAGE
+  $ account list [FILE]
+
+OPTIONS
+  -f, --force
+  -h, --help       show CLI help
+  -n, --name=name  name to print
+```
+
+_See code: [src/commands/list.ts](https://github.com/emadridm/account/blob/v1.0.0/src/commands/list.ts)_
 <!-- commandsstop -->
