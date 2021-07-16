@@ -1,4 +1,4 @@
-import * as Accounts from '@mate/core/lib/accounts';
+// import * as Accounts from '@mate/core/lib/accounts';
 
 // const lib = jest.createMockFromModule('@mate/core/lib/accounts').
 
@@ -6,9 +6,14 @@ import * as Accounts from '@mate/core/lib/accounts';
 //   return [{ provider: 'Exchange', name: 'Office Mail' }, { provider: 'Google', name: 'Personal Mail' }];
 // })
 
-class AccountApp extends Accounts.AccountApp {
+class AccountApp {
+
   async readAccounts() {
     return [{ provider: 'Exchange', name: 'Office Mail' }, { provider: 'Google', name: 'Personal Mail' }];
+  }
+
+  close() {
+    console.log('I am the AccountApp mocked!')
   }
 }
 

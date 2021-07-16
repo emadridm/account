@@ -18,7 +18,7 @@ export default class List extends Command {
   async run() {
     // const parse = this.parse(List);
     const app = await InitApp<AccountApp>(AccountApp);
-    const accounts = app.readAccounts();
+    const accounts = await app.readAccounts();
     // const accounts = [{ provider: 'Exchange', name: 'Office Mail' }, { provider: 'Google', name: 'Personal Mail' }];
     console.table(accounts);
     app.close();
