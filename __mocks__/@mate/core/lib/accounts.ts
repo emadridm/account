@@ -6,10 +6,13 @@
 //   return [{ provider: 'Exchange', name: 'Office Mail' }, { provider: 'Google', name: 'Personal Mail' }];
 // })
 
+const ACCOUNTS = [{ provider: 'Exchange', name: 'Office Mail', username: 'corp\acme' },
+{ provider: 'Google', name: 'Personal Mail', username: 'emadridm@gmail.com' }];
+
 class AccountApp {
 
   async readAccounts() {
-    return [{ provider: 'Exchange', name: 'Office Mail' }, { provider: 'Google', name: 'Personal Mail' }];
+    return ACCOUNTS;
   }
 
   close() {

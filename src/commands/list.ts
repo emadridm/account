@@ -17,10 +17,13 @@ export default class List extends Command {
 
   async run() {
     // const parse = this.parse(List);
+    let table: any[] = [];
     const app = await InitApp<AccountApp>(AccountApp);
     const accounts = await app.readAccounts();
-    // const accounts = [{ provider: 'Exchange', name: 'Office Mail' }, { provider: 'Google', name: 'Personal Mail' }];
-    console.table(accounts);
+    accounts.forEach((account) => {
+      table.push({ id: account._id?.toHexString(), provider: account.provider, name: account.name });
+    })
+    console.table(table);
     app.close();
   }
 }
