@@ -1,6 +1,6 @@
 import { Command, flags } from '@oclif/command'
 import { InitApp } from '@mate/core/lib/cli';
-import { AccountApp } from '@mate/core/lib/accounts';
+import { Accounts } from '@mate/core/lib';
 
 export default class List extends Command {
   static description = 'list accounts'
@@ -8,22 +8,38 @@ export default class List extends Command {
   static flags = {
     help: flags.help({ char: 'h' }),
     // flag with a value (-n, --name=VALUE)
-    name: flags.string({ char: 'n', description: 'name to print' }),
-    // flag with no value (-f, --force)
-    force: flags.boolean({ char: 'f' }),
+    provider: flags.string({
+      char: 'p',
+      description: 'App provider',
+      options: Accounts.AccountApp.SLABELS
+    }),
+
   }
 
-  static args = [{ name: 'file' }]
+  static args = [{ name: 'name' }]
 
   async run() {
-    // const parse = this.parse(List);
-    let table: any[] = [];
-    const app = await InitApp<AccountApp>(AccountApp);
-    const accounts = await app.readAccounts();
-    accounts.forEach((account) => {
-      table.push({ id: account._id?.toHexString(), provider: account.provider, name: account.name });
-    })
-    console.table(table);
+    const parse = this.parse(List);
+    let table: object[] = [];
+    const app = await InitApp<Accounts.AccountApp>(Accounts.AccountApp);
+    if (parse.flags.provider) {
+      const accounts = await app.readAccounts(parse.flags.provider);
+      accounts.forEach((account) => {
+        table.push({ id: account._id?.toHexString(), provider: account.provider, name: account.name });
+      })
+    } else {
+      for (let provider of Accounts.AccountApp.SLABELS) {
+        const accounts = await app.readAccounts(provider);
+        accounts.forEach((account) => {
+          table.push({ id: account._id?.toHexString(), provider: account.provider, name: account.name });
+        })
+      }
+    }
+    if (table.length > 0) {
+      console.table(table);
+    } else {
+      console.log('There are not records!');
+    }
     app.close();
   }
 }

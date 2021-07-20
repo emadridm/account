@@ -1,6 +1,6 @@
 import { Command, flags } from '@oclif/command';
 import { InitApp } from '@mate/core/lib/cli';
-import * as Accounts from '@mate/core/lib/accounts';
+import { Accounts } from '@mate/core/lib';
 
 export default class Create extends Command {
   static description = 'create an account'
@@ -11,7 +11,7 @@ export default class Create extends Command {
     provider: flags.string({
       char: 'p',
       description: 'App provider',
-      options: ['Mate', 'Exchange'],
+      options: Accounts.AccountApp.SLABELS,
       default: 'Mate'
     }),
     // flag with no value (-f, --force)
