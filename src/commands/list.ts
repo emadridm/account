@@ -22,18 +22,12 @@ export default class List extends Command {
     const parse = this.parse(List);
     let table: object[] = [];
     const app = await InitApp<Accounts.AccountApp>(Accounts.AccountApp);
-    if (parse.flags.provider) {
-      const accounts = await app.readAccounts(parse.flags.provider);
+    const binders = parse.flags.provider ? [parse.flags.provider] : Accounts.AccountApp.SLABELS;
+    for (let provider of binders) {
+      const accounts = await app.readAccounts(provider);
       accounts.forEach((account) => {
         table.push({ id: account._id?.toHexString(), provider: account.provider, name: account.name });
       })
-    } else {
-      for (let provider of Accounts.AccountApp.SLABELS) {
-        const accounts = await app.readAccounts(provider);
-        accounts.forEach((account) => {
-          table.push({ id: account._id?.toHexString(), provider: account.provider, name: account.name });
-        })
-      }
     }
     if (table.length > 0) {
       console.table(table);
