@@ -11,7 +11,7 @@ export default class List extends Command {
     provider: flags.string({
       char: 'p',
       description: 'App provider',
-      options: Accounts.AccountApp.SLABELS
+      options: Accounts.App.BINDERS
     }),
 
   }
@@ -21,12 +21,12 @@ export default class List extends Command {
   async run() {
     const parse = this.parse(List);
     let table: object[] = [];
-    const app = await InitApp<Accounts.AccountApp>(Accounts.AccountApp);
-    const binders = parse.flags.provider ? [parse.flags.provider] : Accounts.AccountApp.SLABELS;
+    const app = await InitApp<Accounts.App>(Accounts.App);
+    const binders = parse.flags.provider ? [parse.flags.provider] : Accounts.App.BINDERS;
     for (let provider of binders) {
       const accounts = await app.readAccounts(provider);
       accounts.forEach((account) => {
-        table.push({ id: account._id?.toHexString(), provider: account.provider, name: account.name });
+        table.push({ id: account.id, provider: account.provider, name: account.name });
       })
     }
     if (table.length > 0) {

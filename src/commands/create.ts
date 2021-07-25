@@ -11,7 +11,7 @@ export default class Create extends Command {
     provider: flags.string({
       char: 'p',
       description: 'App provider',
-      options: Accounts.AccountApp.SLABELS,
+      options: Accounts.App.BINDERS,
       default: 'Mate'
     }),
     // flag with no value (-f, --force)
@@ -23,7 +23,7 @@ export default class Create extends Command {
   async run() {
     const { args, flags } = this.parse(Create)
     if (args.name) {
-      const app = await InitApp<Accounts.AccountApp>(Accounts.AccountApp);
+      const app = await InitApp<Accounts.App>(Accounts.App);
       let account = await app.createAccount(flags.provider, args.name);
       console.log(`"${account.name}"@${account.provider} created!`);
       app.close();
