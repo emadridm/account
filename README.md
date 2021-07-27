@@ -31,7 +31,8 @@ USAGE
 * [`account create [NAME]`](#account-create-name)
 * [`account hello [FILE]`](#account-hello-file)
 * [`account help [COMMAND]`](#account-help-command)
-* [`account list [FILE]`](#account-list-file)
+* [`account list [NAME]`](#account-list-name)
+* [`account sign-in [FILE]`](#account-sign-in-file)
 
 ## `account create [NAME]`
 
@@ -43,8 +44,8 @@ USAGE
 
 OPTIONS
   -f, --force
-  -h, --help                    show CLI help
-  -p, --provider=Mate|Exchange  [default: Mate] App provider
+  -h, --help                           show CLI help
+  -p, --provider=Mate|Exchange|Google  [default: Mate] App provider
 ```
 
 _See code: [src/commands/create.ts](https://github.com/emadridm/account/blob/v1.0.0/src/commands/create.ts)_
@@ -86,13 +87,28 @@ OPTIONS
 
 _See code: [@oclif/plugin-help](https://github.com/oclif/plugin-help/blob/v3.2.2/src/commands/help.ts)_
 
-## `account list [FILE]`
+## `account list [NAME]`
+
+list accounts
+
+```
+USAGE
+  $ account list [NAME]
+
+OPTIONS
+  -h, --help                           show CLI help
+  -p, --provider=Mate|Exchange|Google  App provider
+```
+
+_See code: [src/commands/list.ts](https://github.com/emadridm/account/blob/v1.0.0/src/commands/list.ts)_
+
+## `account sign-in [FILE]`
 
 describe the command here
 
 ```
 USAGE
-  $ account list [FILE]
+  $ account sign-in [FILE]
 
 OPTIONS
   -f, --force
@@ -100,5 +116,5 @@ OPTIONS
   -n, --name=name  name to print
 ```
 
-_See code: [src/commands/list.ts](https://github.com/emadridm/account/blob/v1.0.0/src/commands/list.ts)_
+_See code: [src/commands/sign-in.ts](https://github.com/emadridm/account/blob/v1.0.0/src/commands/sign-in.ts)_
 <!-- commandsstop -->
